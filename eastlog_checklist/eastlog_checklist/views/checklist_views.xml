@@ -1,0 +1,198 @@
+<odoo>
+    <data>
+        <record id="checklist_view_tree" model="ir.ui.view">
+            <field name="name">eastlog_checklist.checklist.view.tree</field>
+            <field name="model">eastlog_checklist.checklist</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="category"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- checklist form view -->
+        <record id="model_name_view_form" model="ir.ui.view">
+            <field name="name">eastlog_checklist.checklist.view.form</field>
+            <field name="model">eastlog_checklist.checklist</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="category" options="{'no_open': True}"/>
+                            <field name="sub_checklist_ids"/>
+                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="checklist_record_view_tree" model="ir.ui.view">
+            <field name="name">eastlog_checklist.checklist_record.view.tree</field>
+            <field name="model">eastlog_checklist.checklist_record</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="is_done==True" decoration-danger="has_problem==True">
+                    <field name="name"/>
+                    <field name="checklist_id"/>
+                    <field name="category"/>
+                    <field name="user_id"/>
+                    <field name="is_done"/>
+                    <field name="has_problem" />
+                    <field name="date_submitted"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="checklist_record_view_form" model="ir.ui.view">
+            <field name="name">eastlog_checklist.checklist_record.view.form</field>
+            <field name="model">eastlog_checklist.checklist_record</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <field name="name"/>
+                                <field name="checklist_id"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="is_done"/>
+                                <field name="has_problem" />
+                                <field name="date_submitted"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Sub Checklist Records">
+                                <field name="sub_checklist_record_ids" mode="tree,kanban">
+                                    <!-- <tree decoration-success="is_done==True" decoration-danger="has_problem==True">
+                                        <field name="name"/>
+                                        <field name="is_done"/>
+                                        <field name="has_problem"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="checklist_record_id"/>
+                                                <field name="sub_checklist_id" attrs="{'invisible': True}" />
+                                            </group>
+                                            <group>
+                                                <field name="is_done"/>
+                                                <field name="has_problem"/>
+                                            </group>
+                                            <notebook>
+                                                <page string="Item Records">
+                                                    <field name="item_record_ids" mode="tree,kanban" />
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form> -->
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Sub Checklist Record form view -->
+        <record id="sub_checklist_record_view_form" model="ir.ui.view">
+            <field name="name">eastlog_checklist.sub_checklist_record.view.form</field>
+            <field name="model">eastlog_checklist.sub_checklist_record</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="checklist_record_id"/>
+                            <field name="sub_checklist_id" attrs="{'invisible': True}" />
+                        </group>
+                        <group>
+                            <field name="is_done"/>
+                            <field name="has_problem"/>
+                        </group>
+                        <notebook>
+                            <page string="Item Records">
+                                <field name="item_record_ids" mode="tree,kanban" />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Sub Checklist Record tree view -->
+        <record id="sub_checklist_record_view_tree" model="ir.ui.view">
+            <field name="name">eastlog_checklist.sub_checklist_record.view.tree</field>
+            <field name="model">eastlog_checklist.sub_checklist_record</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="is_done==True" decoration-danger="has_problem==True" >
+                    <field name="name"/>
+                    <field name="is_done"/>
+                    <field name="has_problem"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Item Record -->
+        <record id="item_record_view_form" model="ir.ui.view">
+            <field name="name">eastlog_checklist.item_record.view.form</field>
+            <field name="model">eastlog_checklist.item_record</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="item_id" attrs="{'invisible': True}" />
+                            <field name="sub_checklist_record_id"/>
+                        </group>
+                        <group>
+                            <field name="is_done"/>
+                            <field name="has_problem"/>
+                            <field name="media_url" widget="url"/>
+                            <field name="media_type" />
+                            <field name="comment"/>
+                        </group>
+                        <separator />
+                        <group>
+                            <button string="Create a Job Request" name="%(eastlog_job_request.open_create_job_request)d" type="action" class="oe_highlight"
+                                attrs="{'invisible': [('has_problem', '=', False)]}"
+                                context="{'search_default_name': name,
+                                        'default_name': name}"/>
+                            <button string="View Job Requests" name="%(eastlog_job_request.job_request_action_view_search)d" type="action"
+                                attrs="{'invisible': [('has_problem', '=', False)]}"
+                                context="{'search_default_name': name,
+                                        'default_name': name}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="item_record_view_tree" model="ir.ui.view">
+            <field name="name">eastlog_checklist.item_record.view.tree</field>
+            <field name="model">eastlog_checklist.item_record</field>
+            <field name="arch" type="xml">
+                <tree decoration-success="is_done==True" decoration-danger="has_problem==True">
+                    <field name="name"/>
+                    <field name="is_done"/>
+                    <field name="has_problem"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

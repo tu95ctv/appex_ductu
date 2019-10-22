@@ -1,0 +1,88 @@
+<odoo>
+    <data>
+        <act_window id='action_category'
+            name='Category'
+            res_model='eastlog_checklist.category'
+            view_mode='tree,form'
+       />
+       <act_window id='action_checklist'
+            name='Checklist'
+            res_model='eastlog_checklist.checklist'
+            view_mode='tree,form'
+       />
+        <act_window id='action_checklist_record'
+            name='Checklist Record'
+            res_model='eastlog_checklist.checklist_record'
+            view_mode='tree,form'
+       />
+
+        <!-- <act_window id='action_checklist_sub_checklist'
+            name='SubChecklist'
+            res_model='eastlog_checklist.sub_checklist'
+            view_mode='tree,form'
+       />
+        <act_window id='action_checklist_sub_checklist_record'
+            name='SubChecklist Record'
+            res_model='eastlog_checklist.sub_checklist_record'
+            view_mode='tree,form'
+       /> -->
+        <!-- <act_window id='action_checklist_item'
+            name='Item'
+            res_model='eastlog_checklist.item'
+            view_mode='tree,form'
+       />
+        <act_window id='action_checklist_item_record'
+            name='Item Record'
+            res_model='eastlog_checklist.item_record'
+            view_mode='tree,form'
+       /> -->
+
+       <!-- This Menu Item must have a parent and an action -->
+       <menuitem id="menu_eastlog_checklist" name="Checklist" action="" /> 
+
+       <!-- This Menu Item Must have a parent -->
+       <menuitem id="menu_category" 
+        name="Category" 
+        parent="menu_eastlog_checklist" 
+        sequence="9" 
+        action="action_category"/>
+
+       <menuitem id="menu_checklist" 
+        name="Checklist" 
+        parent="menu_eastlog_checklist" 
+        sequence="10" 
+        action="action_checklist"/>
+
+        <menuitem id="menu_checklist_record" 
+        name="Checklist Record" 
+        parent="menu_eastlog_checklist" 
+        sequence="11" 
+        action="action_checklist_record"/>
+
+        <!-- <menuitem id="menu_checklist_sub_checklist" 
+        name="SubChecklist" 
+        parent="menu_eastlog_checklist" 
+        sequence="12" 
+        action="action_checklist_sub_checklist"/>
+
+        <menuitem id="menu_checklist_sub_checklist_record" 
+        name="SubChecklist Record" 
+        parent="menu_eastlog_checklist" 
+        sequence="13" 
+        action="action_checklist_sub_checklist_record"/> -->
+
+        <!-- <menuitem id="menu_checklist_item" 
+        name="Item" 
+        parent="menu_eastlog_checklist" 
+        sequence="12" 
+        action="action_checklist_item"/>
+
+        <menuitem id="menu_checklist_item_record" 
+        name="Item Record" 
+        parent="menu_eastlog_checklist" 
+        sequence="13" 
+        action="action_checklist_item_record"/> -->
+
+        
+    </data>
+</odoo>

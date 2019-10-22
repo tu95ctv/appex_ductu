@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="create_checklist_record_activity" model="mail.activity.type">
+            <field name="name">Checklist Record Has Problems</field>
+            <field name="icon">fa-tasks</field>
+            <field name="day">0</field>
+        </record>
+    </data>
+</odoo>
